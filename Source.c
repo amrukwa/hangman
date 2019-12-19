@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include<time.h>
+#include <string.h>
 
 typedef struct {
 	char *string;
@@ -52,6 +53,7 @@ void initializeDisplayedString(word* given)
 	{
 		given->outstr[i] = '-';
 	}
+	
 }
 
 void setupOnePlayer(word* given)
@@ -82,7 +84,7 @@ void setupTwoPlayers(word* given)
 	initializeDisplayedString(given);
 }
 
-void printGuess(word* given)
+void printGuess(word* given, guesses* degree)
 {
 
 	system("cls");
@@ -91,8 +93,12 @@ void printGuess(word* given)
 	{
 		printf("%c", given->outstr[i]);
 	}
+	printf("\nHere are incorrect letters you have already used:\n");
+	for (int i = 0; i < degree->trycount; i++)
+	{
+		printf("%c ", degree->failedGuesses[i]);
+	}
 }
-
 
 void makeOneGuess(word* given, guesses* degree)
 {
@@ -111,9 +117,21 @@ void makeOneGuess(word* given, guesses* degree)
 	if (checkvalue == 0)
 	{
 		degree->trycount++;
-		degree->failedGuesses[degree->trycount - 1] =input;
+		degree->failedGuesses[(degree->trycount-1)] = input; 
+		
 	}
 	checkvalue = 0;
+}
+
+void checkForVictory(word* given, guesses* degree, int *breakingloop)
+{
+	for (int i = 0; i < (given->size); i++)
+	{
+		if (given->outstr[i] == given->string[i])
+		{
+			(*breakingloop)++;
+		}
+	}
 }
 
 void estimateTheResult(word* given, guesses* degree)
@@ -146,16 +164,21 @@ int main()
 		setupOnePlayer(&given);
 	}
 
-	printGuess(&given);
+	printGuess(&given, &degree);
 
-	/*while (degree.trycount < degree.level && strcmp(given.string, given.outstr) != 0)
+	while (degree.trycount < degree.level)
 	{
 		makeOneGuess(&given, &degree);
-	}*/
-
-	makeOneGuess(&given, &degree);
-	
-	//estimateTheResult(&given, &degree);
+		printGuess(&given, &degree);
+		int breakingloop = 0;
+		checkForVictory(&given, &degree, &breakingloop);
+		if (breakingloop == given.size)
+		{
+			break;
+		}
+	}
+		
+	estimateTheResult(&given, &degree);
 
 	free(given.outstr);
 	free(given.string);
