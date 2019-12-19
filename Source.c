@@ -90,23 +90,36 @@ void printFirstGuess(word* given)
 	}
 }
 
+/*void doAfterCorrectGuess(word* given, int i)
+{
+	printf("Correct!\n");
+	given->outstr[i] = given->string[i];
+
+}
+
+void doAfterWrongGuess(guesses* degree)
+{
+	printf("Wrong\n");
+	degree->trycount++;
+}
+
 void makeOneGuess(word* given, guesses* degree)
 {
-	printf("\nType desired letter.");
 	char c;
 	int CheckIfImplemented = 0;
+	printf("\nType");
 	c = getchar();
 	for (int i = 0; i < given->size; i++)
 	{
-		if (given->string == c)
+		if (given->string[i] == c)
 		{
-			doAfterCorrectGuess();
+			doAfterCorrectGuess(&given, i);
 			CheckIfImplemented++;
 		}
 	}
 	if (CheckIfImplemented == 0)
 	{
-		doAfterWrongGuess();
+		doAfterWrongGuess(&degree);
 	}
 
 }
@@ -121,7 +134,7 @@ void estimateTheResult(word* given, guesses* degree)
 	{
 		printf("\nThis is the word!");
 	}
-}
+}*/
 
 int main()
 {
@@ -142,6 +155,13 @@ int main()
 	}
 
 	printFirstGuess(&given);
+
+	/*while (degree.trycount < degree.level && strcmp(given.string, given.outstr) != 0)
+	{
+		makeOneGuess(&given, &degree);
+	}
+
+	estimateTheResult(&given, &degree);*/
 
 	free(given.outstr);
 	free(given.string);
