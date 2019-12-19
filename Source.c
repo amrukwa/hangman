@@ -90,6 +90,39 @@ void printFirstGuess(word* given)
 	}
 }
 
+void makeOneGuess(word* given, guesses* degree)
+{
+	printf("\nType desired letter.");
+	char c;
+	int CheckIfImplemented = 0;
+	c = getchar();
+	for (int i = 0; i < given->size; i++)
+	{
+		if (given->string == c)
+		{
+			doAfterCorrectGuess();
+			CheckIfImplemented++;
+		}
+	}
+	if (CheckIfImplemented == 0)
+	{
+		doAfterWrongGuess();
+	}
+
+}
+
+void estimateTheResult(word* given, guesses* degree)
+{
+	if (degree->trycount == degree->level)
+	{
+		printf("\nGame over!");
+	}
+	else if (strcmp(given->string, given->outstr) == 0)
+	{
+		printf("\nThis is the word!");
+	}
+}
+
 int main()
 {
 	word given;
