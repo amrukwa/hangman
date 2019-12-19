@@ -48,6 +48,10 @@ void initializeDisplayedString(word* given)
 {
 	given->size = strlen(given->string);
 	given->outstr = (char*)malloc((given->size + 1) * sizeof(char));
+	for (int i = 0; i < (given->size); i++)
+	{
+		given->outstr[i] = '-';
+	}
 }
 
 void setupOnePlayer(word* given)
@@ -78,50 +82,38 @@ void setupTwoPlayers(word* given)
 	initializeDisplayedString(given);
 }
 
-void printFirstGuess(word* given)
+void printGuess(word* given)
 {
 
 	system("cls");
 	printf("Here is your word:\n");
 	for (int i = 0; i < (given->size); i++)
 	{
-		given->outstr[i] = '-';
 		printf("%c", given->outstr[i]);
 	}
 }
 
-/*void doAfterCorrectGuess(word* given, int i)
-{
-	printf("Correct!\n");
-	given->outstr[i] = given->string[i];
-
-}
-
-void doAfterWrongGuess(guesses* degree)
-{
-	printf("Wrong\n");
-	degree->trycount++;
-}
 
 void makeOneGuess(word* given, guesses* degree)
 {
-	char c;
-	int CheckIfImplemented = 0;
-	printf("\nType");
-	c = getchar();
+	int checkvalue = 0;
+	printf("\nType the desired letter.\n");
+	char input;
+	scanf(" %c", &input);
 	for (int i = 0; i < given->size; i++)
 	{
-		if (given->string[i] == c)
+		if (given->string[i] == input)
 		{
-			doAfterCorrectGuess(&given, i);
-			CheckIfImplemented++;
+			given->outstr[i] = given->string[i];
+			checkvalue = 1;
 		}
 	}
-	if (CheckIfImplemented == 0)
+	if (checkvalue == 0)
 	{
-		doAfterWrongGuess(&degree);
+		degree->trycount++;
+		degree->failedGuesses[degree->trycount - 1] =input;
 	}
-
+	checkvalue = 0;
 }
 
 void estimateTheResult(word* given, guesses* degree)
@@ -130,11 +122,11 @@ void estimateTheResult(word* given, guesses* degree)
 	{
 		printf("\nGame over!");
 	}
-	else if (strcmp(given->string, given->outstr) == 0)
+	else
 	{
 		printf("\nThis is the word!");
 	}
-}*/
+}
 
 int main()
 {
@@ -154,14 +146,16 @@ int main()
 		setupOnePlayer(&given);
 	}
 
-	printFirstGuess(&given);
+	printGuess(&given);
 
 	/*while (degree.trycount < degree.level && strcmp(given.string, given.outstr) != 0)
 	{
 		makeOneGuess(&given, &degree);
-	}
+	}*/
 
-	estimateTheResult(&given, &degree);*/
+	makeOneGuess(&given, &degree);
+	
+	//estimateTheResult(&given, &degree);
 
 	free(given.outstr);
 	free(given.string);
