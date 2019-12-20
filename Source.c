@@ -47,8 +47,7 @@ void initializeSearchedString(word*given, int initialSize)
 
 void initializeDisplayedString(word* given)
 {
-	given->size = strlen(given->string);
-	given->outstr = (char*)malloc((given->size + 1) * sizeof(char));
+	given->outstr = (char*)malloc((given->size) * sizeof(char));
 	for (int i = 0; i < (given->size); i++)
 	{
 		given->outstr[i] = '-';
@@ -74,6 +73,7 @@ void setupOnePlayer(word* given)
 	}
 	free(container);
 	fclose(dictionary);
+	given->size = strlen(given->string)-1;
 	initializeDisplayedString(given);
 }
 
@@ -81,6 +81,7 @@ void setupTwoPlayers(word* given)
 {
 	printf("Give the desired word.\n");
 	scanf("%s", given->string);
+	given->size = strlen(given->string);
 	initializeDisplayedString(given);
 }
 
