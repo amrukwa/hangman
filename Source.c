@@ -85,6 +85,158 @@ void setupTwoPlayers(word* given)
 	initializeDisplayedString(given);
 }
 
+void drawTheHangman(guesses* degree)
+{
+	if (degree->trycount == 0)
+	{
+		printf("\n\n\n\n\n\n\n\n\n\n\n\n\n");
+	}
+	else if (degree->trycount == 1)
+	{
+		printf("\n\n\n\n\n\n\n\n\n\n\n\n==========\n");
+	}
+	else if (degree->trycount == 2 && degree->level == 10)
+	{
+		printf("\n\n  ||  \n");
+		printf("  || \n");
+		printf("  ||\n");
+		printf("  ||\n");
+		printf("  || \n");
+		printf("  ||\n");
+		printf("  ||\n");
+		printf("  ||\n");
+		printf("  ||\n");
+		printf("  ||\n");
+		printf("==========\n");
+	}
+	else if (degree->trycount == 2 && degree->level == 6 || degree->trycount == 3 && degree->level == 10)
+	{
+		printf("\n\n  ||  //\n");
+		printf("  || //\n");
+		printf("  ||//\n");
+		printf("  ||\n");
+		printf("  || \n");
+		printf("  ||\n");
+		printf("  ||\n");
+		printf("  ||\n");
+		printf("  ||\n");
+		printf("  ||\n");
+		printf("==========\n");
+	}
+	else if (degree->trycount == 4 && degree->level == 10)
+	{
+		printf("  \n  ===========\n");
+		printf("  ||  //\n");
+		printf("  || //\n");
+		printf("  ||//\n");
+		printf("  ||\n");
+		printf("  || \n");
+		printf("  ||\n");
+		printf("  ||\n");
+		printf("  ||\n");
+		printf("  ||\n");
+		printf("  ||\n");
+		printf("==========\n");
+	}
+	else if (degree->trycount == degree->level / 2)
+	{
+		printf("  ___________\n");
+		printf("  ===========\n");
+		printf("  ||  //\n");
+		printf("  || //\n");
+		printf("  ||//\n");
+		printf("  ||\n");
+		printf("  || \n");
+		printf("  ||\n");
+		printf("  ||\n");
+		printf("  ||\n");
+		printf("  ||\n");
+		printf("  ||\n");
+		printf("==========\n");
+	}
+	else if (degree->trycount == 4 && degree->level == 6 || degree->trycount == 6 && degree->level == 10)
+	{
+		printf("  ___________\n");
+		printf("  ===========|\n");
+		printf("  ||  //     |\n");
+		printf("  || //      |\n");
+		printf("  ||//       |\n");
+		printf("  ||\n");
+		printf("  || \n");
+		printf("  ||\n");
+		printf("  ||\n");
+		printf("  ||\n");
+		printf("  ||\n");
+		printf("  ||\n");
+		printf("==========\n");
+	}
+	else if (degree->trycount == 7 && degree->level == 10)
+	{
+		printf("  ___________     \n");
+		printf("  ===========|    \n");
+		printf("  ||  //     |    \n");
+		printf("  || //      |    \n");
+		printf("  ||//       |_   \n");
+		printf("  ||         / \\ \n");
+		printf("  ||         \\ /  \n");
+		printf("  ||              \n");
+		printf("  ||              \n");
+		printf("  ||              \n");
+		printf("  ||              \n");
+		printf("  ||              \n");
+		printf("==========        \n");
+	}
+	else if (degree->trycount == 5 && degree->level == 6 || degree->trycount == 8 && degree->level == 10)
+	{
+		printf("  ___________     \n");
+		printf("  ===========|    \n");
+		printf("  ||  //     |    \n");
+		printf("  || //      |    \n");
+		printf("  ||//       |_   \n");
+		printf("  ||         / \\ \n");
+		printf("  ||         \\ /  \n");
+		printf("  ||          |   \n");
+		printf("  ||          |   \n");
+		printf("  ||              \n");
+		printf("  ||              \n");
+		printf("  ||              \n");
+		printf("==========        \n");
+	}
+	else if (degree->trycount == 9 && degree->level == 10)
+	{
+		printf("  ___________     \n");
+		printf("  ===========|    \n");
+		printf("  ||  //     |    \n");
+		printf("  || //      |    \n");
+		printf("  ||//       |_   \n");
+		printf("  ||         / \\ \n");
+		printf("  ||         \\ /  \n");
+		printf("  ||         /|\\  \n");
+		printf("  ||          |   \n");
+		printf("  ||              \n");
+		printf("  ||              \n");
+		printf("  ||              \n");
+		printf("==========        \n");
+	}
+	else if (degree->trycount == degree->level) //end of game
+	{
+		printf("   ___________    \n");
+		printf("  ===========|    \n");
+		printf("  ||  //     |    \n");
+		printf("  || //      |    \n");
+		printf("  ||//       |_   \n");
+		printf("  ||         / \\ \n");
+		printf("  ||         \\ / \n");
+		printf("  ||          |   \n");
+		printf("  ||         /|\\ \n");
+		printf("  ||          |   \n");
+		printf("  ||         / \\ \n");
+		printf("  ||              \n");
+		printf("  ||              \n");
+		printf("==========        \n");
+	}
+}
+
 void printGuess(word* given, guesses* degree)
 {
 
@@ -94,6 +246,8 @@ void printGuess(word* given, guesses* degree)
 	{
 		printf("%c", given->outstr[i]);
 	}
+	printf("\n");
+	drawTheHangman(degree);
 	printf("\nHere are incorrect letters you have already used:\n");
 	for (int i = 0; i < degree->trycount; i++)
 	{
