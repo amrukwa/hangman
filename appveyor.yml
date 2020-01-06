@@ -14,12 +14,22 @@ test: off
 artifacts:
 - path: '**\*.exe'
   name: executable-$(configuration)
+- path: 'words.txt'
+  name: dictionary
 deploy:
 - provider: GitHub
   tag: hangman-v$(appveyor_build_version)
   auth_token:
     secure: SYXtRdG+3FpTZcSKWje5OmvtUU5rH4+wWloHdBkZJbpY/w8XAQUZK2Y/lzVt6kCD
   artifact: /.*\.exe/
+  on:
+    configuration: Release
+    branch: master
+- provider: GitHub
+  tag: hangman-v$(appveyor_build_version)
+  auth_token:
+    secure: SYXtRdG+3FpTZcSKWje5OmvtUU5rH4+wWloHdBkZJbpY/w8XAQUZK2Y/lzVt6kCD
+  artifact: /words\.txt/
   on:
     configuration: Release
     branch: master
