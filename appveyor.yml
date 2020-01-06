@@ -11,8 +11,8 @@ build:
   parallel: true
   verbosity: minimal
 after_build:
-- cmd: 7z a hangman-$(configuration).zip words.txt
-- cmd: 7z a hangman-$(configuration).zip **\*.exe
+- cmd: 7z a hangman-%CONFIGURATION%.zip words.txt
+- cmd: 7z a hangman-%CONFIGURATION%.zip -ir!*\*.exe
 test: off
 artifacts:
 - path: '**\*.zip'
