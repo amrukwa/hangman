@@ -2,7 +2,7 @@
 
 [![Build status](https://ci.appveyor.com/api/projects/status/flit6delj6byinbf/branch/master?svg=true)](https://ci.appveyor.com/project/amrukwa/hangman/branch/master)
 
-##Classic hangman game
+## Classic hangman game
 ----
 ![image](https://user-images.githubusercontent.com/57860857/71855338-0f424e80-30e1-11ea-808c-e551de154d6d.png)
 ----
