@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #include <stdio.h>
 #include<time.h>
 #include <string.h>
@@ -57,7 +58,7 @@ void initializeDisplayedString(word* given)
 
 void setupOnePlayer(word* given)
 {
-	srand(time(NULL));
+	srand((unsigned int)time(NULL));
 	FILE* dictionary;
 	fopen_s(&dictionary, "words.txt", "r");
 	char *container= (char*)malloc(given->MaxLength * sizeof(char));
