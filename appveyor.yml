@@ -12,7 +12,7 @@ build:
   verbosity: minimal
 after_build:
 - cmd: 7z a hangman-%CONFIGURATION%.zip words.txt
-- cmd: 7z a hangman-%CONFIGURATION%.zip -ir!*\*.exe
+- cmd: 7z a hangman-%CONFIGURATION%.zip .\%PLATFORM%\%CONFIGURATION%\Hangman.exe
 test: off
 artifacts:
 - path: '**\*.zip'
