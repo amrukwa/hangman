@@ -1,6 +1,7 @@
 # hangman
 
 [![Build status](https://ci.appveyor.com/api/projects/status/flit6delj6byinbf/branch/master?svg=true)](https://ci.appveyor.com/project/amrukwa/hangman/branch/master)
+[![CodeFactor](https://www.codefactor.io/repository/github/amrukwa/hangman/badge/master)](https://www.codefactor.io/repository/github/amrukwa/hangman/overview/master)
 
 ## Classic hangman game
 
